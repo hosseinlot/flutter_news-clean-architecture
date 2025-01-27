@@ -2,15 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/di.dart';
-import 'package:news_app/features/daily_news/presentation/bloc/article/local/local_article_bloc.dart';
-import 'package:news_app/features/daily_news/presentation/bloc/article/remote/remote_article_bloc.dart';
-import 'package:news_app/features/daily_news/presentation/bloc/article/remote/remote_article_state.dart';
+import 'package:news_app/features/bookmark/presentation/bloc/local/bookmark_bloc.dart';
+import 'package:news_app/features/daily_news/presentation/bloc/remote/article_bloc.dart';
+import 'package:news_app/features/daily_news/presentation/bloc/remote/article_state.dart';
 import 'package:news_app/features/daily_news/presentation/pages/article_detail_screen.dart';
-import 'package:news_app/features/daily_news/presentation/pages/bookmark_screen.dart';
+import 'package:news_app/features/bookmark/presentation/pages/bookmark_screen.dart';
 import 'package:news_app/features/daily_news/presentation/widgets/article_tile.dart';
 
-class DailyNewsScreen extends StatelessWidget {
-  const DailyNewsScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class DailyNewsScreen extends StatelessWidget {
           )
         ],
       ),
-      body: BlocBuilder<RemoteArticleBloc, RemoteArticleState>(
+      body: BlocBuilder<ArticleBloc, ArticleState>(
         builder: (context, state) {
           if (state is RemoteArticlesLoading) {
             return Center(child: CupertinoActivityIndicator());
@@ -44,7 +44,7 @@ class DailyNewsScreen extends StatelessWidget {
                 return GestureDetector(
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => BlocProvider(
-                              create: (context) => LocalArticleBloc(locator.get(), locator.get(), locator.get()),
+                              create: (context) => BookmarkBloc(locator.get(), locator.get()),
                               child: ArticleDetailScreen(article: state.articles[index]),
                             ))),
                     child: ArticleTile(article: state.articles[index]));
