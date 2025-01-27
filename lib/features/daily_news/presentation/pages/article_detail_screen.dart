@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:news_app/di.dart';
 import 'package:news_app/features/daily_news/domain/entities/article.dart';
 import 'package:news_app/features/daily_news/presentation/bloc/article/local/local_article_bloc.dart';
 import 'package:news_app/features/daily_news/presentation/bloc/article/local/local_article_event.dart';
