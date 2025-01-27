@@ -3,17 +3,14 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:news_app/core/constants/constants.dart';
 import 'package:news_app/core/resources/data_state.dart';
-import 'package:news_app/features/daily_news/data/data_sources/local/DAO/app_database.dart';
 import 'package:news_app/features/daily_news/data/data_sources/remote/news_api_service.dart';
 import 'package:news_app/features/daily_news/data/models/article.dart';
-import 'package:news_app/features/daily_news/domain/entities/article.dart';
 import 'package:news_app/features/daily_news/domain/repository/article_repository.dart';
 
 class ArticleRepositoryImpl implements ArticleRepository {
   final NewsApiService _newsApiService;
-  final AppDatabase _appDatabase;
 
-  ArticleRepositoryImpl(this._newsApiService, this._appDatabase);
+  ArticleRepositoryImpl(this._newsApiService);
 
   @override
   Future<DataState<List<ArticleModel>>> getNewsArticles() async {
@@ -38,35 +35,4 @@ class ArticleRepositoryImpl implements ArticleRepository {
       return DataFailed(e);
     }
   }
-
-  @override
-  Future<List<ArticleModel>> getSavedArticles() async {
-    return _appDatabase.articleDAO.getArticles();
-  }
-
-  @override
-  Future<String> toggleBookmark(ArticleEntity article) async {
-    // Check if article exists
-    final existingArticle = await _appDatabase.articleDAO.getArticleByUrl(article.url!);
-
-    if (existingArticle != null) {
-      // remove bookmark
-      await _appDatabase.articleDAO.deleteArticle(ArticleModel.fromEntity(article));
-      return 'Bookmarked removed successfully';
-    } else {
-      // add bookmark
-      await _appDatabase.articleDAO.insertArticle(ArticleModel.fromEntity(article));
-      return 'Article bookmarked successfully';
-    }
-  }
-
-  // @override
-  // Future<void> removeArticle(ArticleEntity article) {
-  //   return _appDatabase.articleDAO.deleteArticle(ArticleModel.fromEntity(article));
-  // }
-
-  // @override
-  // Future<void> saveArticle(ArticleEntity article) {
-  //   return _appDatabase.articleDAO.insertArticle(ArticleModel.fromEntity(article));
-  // }
 }
