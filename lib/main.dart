@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/config/theme/app_theme.dart';
 import 'package:news_app/di.dart';
-import 'package:news_app/features/daily_news/presentation/bloc/article/remote/remote_article_bloc.dart';
-import 'package:news_app/features/daily_news/presentation/bloc/article/remote/remote_article_event.dart';
+import 'package:news_app/features/daily_news/presentation/bloc/remote/article_bloc.dart';
+import 'package:news_app/features/daily_news/presentation/bloc/remote/article_event.dart';
 import 'package:news_app/features/daily_news/presentation/pages/daily_news_screen.dart';
 
 void main() async {
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: theme(),
       home: BlocProvider(
         create: (context) {
-          var bloc = RemoteArticleBloc(locator.get());
+          var bloc = ArticleBloc(locator.get());
           bloc.add(GetArticlesEvent());
           return bloc;
         },

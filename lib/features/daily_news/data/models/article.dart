@@ -4,7 +4,6 @@ import 'package:floor/floor.dart';
 @Entity(tableName: 'article', primaryKeys: ['url'])
 class ArticleModel extends ArticleEntity {
   const ArticleModel({
-    // int? id,
     String? author,
     String? title,
     String? description,
@@ -13,7 +12,6 @@ class ArticleModel extends ArticleEntity {
     String? publishedAt,
     String? content,
   }) : super(
-          // id: id,
           author: author,
           title: title,
           description: description,
@@ -37,7 +35,6 @@ class ArticleModel extends ArticleEntity {
 
   factory ArticleModel.fromEntity(ArticleEntity entity) {
     return ArticleModel(
-      // id: entity.id,
       author: entity.author,
       title: entity.title,
       description: entity.description,

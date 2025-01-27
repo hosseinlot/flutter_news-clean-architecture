@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/di.dart';
-import 'package:news_app/features/daily_news/presentation/bloc/article/local/local_article_bloc.dart';
-import 'package:news_app/features/daily_news/presentation/bloc/article/local/local_article_event.dart';
-import 'package:news_app/features/daily_news/presentation/bloc/article/local/local_article_state.dart';
+import 'package:news_app/features/bookmark/presentation/bloc/local/bookmark_bloc.dart';
+import 'package:news_app/features/bookmark/presentation/bloc/local/bookmark_event.dart';
+import 'package:news_app/features/bookmark/presentation/bloc/local/bookmark_state.dart';
 import 'package:news_app/features/daily_news/presentation/pages/article_detail_screen.dart';
 import 'package:news_app/features/daily_news/presentation/widgets/article_tile.dart';
 
@@ -15,7 +15,7 @@ class BookmarkScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) {
-        var bloc = locator<LocalArticleBloc>();
+        var bloc = locator<BookmarkBloc>();
         bloc.add(GetSavedArticlesEvent());
         return bloc;
       },
@@ -28,7 +28,7 @@ class BookmarkScreen extends StatelessWidget {
           ),
           title: Text('Bookmarks', style: TextStyle(color: Colors.black)),
         ),
-        body: BlocBuilder<LocalArticleBloc, LocalArticleState>(
+        body: BlocBuilder<BookmarkBloc, BookmarkState>(
           builder: (context, state) {
             // print(state);
             if (state is LocalArticlesLoading) {
@@ -51,7 +51,7 @@ class BookmarkScreen extends StatelessWidget {
                   return GestureDetector(
                       onTap: () => Navigator.of(context).push(MaterialPageRoute(
                           builder: (newContext) => BlocProvider.value(
-                                value: context.read<LocalArticleBloc>(),
+                                value: context.read<BookmarkBloc>(),
                                 child: ArticleDetailScreen(article: state.articles[index]),
                               ))),
                       child: ArticleTile(article: state.articles[index]));

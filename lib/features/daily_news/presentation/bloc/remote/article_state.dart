@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:news_app/features/daily_news/domain/entities/article.dart';
 
-abstract class RemoteArticleState extends Equatable {
+abstract class ArticleState extends Equatable {
   // final List<ArticleEntity>? articles;
   // final DioException? error;
 
@@ -13,14 +13,14 @@ abstract class RemoteArticleState extends Equatable {
   List<Object?> get props => throw UnimplementedError();
 }
 
-class RemoteArticlesLoading extends RemoteArticleState {}
+class RemoteArticlesLoading extends ArticleState {}
 
-class RemoteArticlesDone extends RemoteArticleState {
+class RemoteArticlesDone extends ArticleState {
   final List<ArticleEntity> articles;
   RemoteArticlesDone(this.articles);
 }
 
-class RemoteArticlesError extends RemoteArticleState {
+class RemoteArticlesError extends ArticleState {
   final DioException error;
   RemoteArticlesError(this.error);
 }
