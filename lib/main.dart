@@ -4,7 +4,7 @@ import 'package:news_app/config/theme/app_theme.dart';
 import 'package:news_app/di.dart';
 import 'package:news_app/features/daily_news/presentation/bloc/remote/article_bloc.dart';
 import 'package:news_app/features/daily_news/presentation/bloc/remote/article_event.dart';
-import 'package:news_app/features/daily_news/presentation/pages/daily_news_screen.dart';
+import 'package:news_app/features/daily_news/presentation/pages/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           bloc.add(GetArticlesEvent());
           return bloc;
         },
-        child: DailyNewsScreen(),
+        child: HomeScreen(),
       ),
     );
   }

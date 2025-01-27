@@ -9,8 +9,8 @@ import 'package:news_app/features/daily_news/presentation/pages/article_detail_s
 import 'package:news_app/features/bookmark/presentation/pages/bookmark_screen.dart';
 import 'package:news_app/features/daily_news/presentation/widgets/article_tile.dart';
 
-class DailyNewsScreen extends StatelessWidget {
-  const DailyNewsScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
