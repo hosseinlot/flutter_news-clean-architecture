@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/features/daily_news/domain/entities/article.dart';
+import 'package:intl/intl.dart';
 
 class ArticleTile extends StatelessWidget {
   final ArticleEntity article;
@@ -92,7 +93,7 @@ class ArticleTile extends StatelessWidget {
                       Icon(Icons.timeline_outlined, size: 16),
                       SizedBox(width: 4),
                       Text(
-                        article.publishedAt!,
+                        DateFormat('yyyy-MM-dd HH:mm').format(DateTime.parse(article.publishedAt!)),
                         style: TextStyle(fontSize: 12),
                       ),
                     ],
