@@ -1,6 +1,6 @@
 # news_app
 
-A new Flutter project.
+A simple news app made in flutter with clean architecture and feature based.
 
 ## Getting Started
 
