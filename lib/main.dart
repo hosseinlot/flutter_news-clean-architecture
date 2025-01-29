@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:news_app/config/theme/app_theme.dart';
 import 'package:news_app/di.dart';
 import 'package:news_app/features/daily_news/presentation/bloc/remote/article_bloc.dart';
@@ -9,6 +10,8 @@ import 'package:news_app/features/daily_news/presentation/pages/home_screen.dart
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await getItInit();
+
+  await dotenv.load(fileName: ".env"); // Load the .env file
   runApp(const MyApp());
 }
 
